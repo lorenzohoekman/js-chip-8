@@ -13,7 +13,7 @@ let loop;
 
 let fps = 60, fpsInterval, startTime, now, then, elapsed;
 
-function init(rom_name = "Space Invaders [David Winter].ch8") {
+export function init(rom_name = "Space Invaders [David Winter].ch8") {
     fpsInterval = 1000 / fps;
 	then = Date.now();
 	startTime = then;
@@ -36,3 +36,4 @@ function step() {
 
 //init();
 
+export default init;

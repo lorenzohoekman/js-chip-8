@@ -4,7 +4,74 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <canvas></canvas>
+
+        <div class="container">
+            <div class="header">
+                <div class="sound">	&#x1F50A;</div>
+                <div class="title">JS Chip-8 emulator</div>
+                <div class="fps">FPS: 60</div>
+            </div>
+            <canvas></canvas>
+            <div class="game_list">
+                <div class="title">Available Games</div>
+
+                <div id="list" class="list">
+                    <script type="text/javascript" >
+                        async function get_game_list() {
+                            const response = await fetch("roms/games");
+                            console.info("1. getting games list")
+                            return response.text();
+                        }
+                        
+                        async function write_game_list()  {
+                            
+                            const game_list = document.getElementById("list")
+                            let html = await get_game_list()
+                            
+                            console.info("2. writing games list")
+                            game_list.innerHTML = html;
+
+                            let list_item = document.getElementById("list").querySelectorAll("li");
+
+                            let new_game_list = []
+                            let outer = document.createElement("ul")
+
+                            list_item.forEach(element => {
+                    
+                                let is_text = element.getElementsByClassName("icon-text");
+                                console.log(is_text)
+                                if (is_text.length > 0) {
+                                    element.style.display = "none";
+                                }
+                                else{
+                                    let name = element.getElementsByClassName("name")[0].textContent;
+                                    //console.log(name)
+                                    element.setAttribute("onclick", "init(" + name + ")")
+
+                                    let new_game_item = document.createElement("li") 
+
+                                    new_game_item.innerText = name;
+
+                                    new_game_list.push("")
+                                } 
+                            });
+
+                            console.log(list_item)
+
+                            game_list.innerHTML = new_game_list
+                        }
+                        
+                        write_game_list()
+
+                        
+
+
+                    </script>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </div>
+        
 
         <script type="module" src="src/chip8.js"></script>
     </body>

@@ -1,3 +1,36 @@
 canvas {
     border: 2px solid black;
 }
+
+.container{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
+    height: 40px;
+    width: 100%;
+    max-width: 644px;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.title{
+    font-weight: bold;
+}
+
+.sound:hover{
+    cursor:pointer;
+}
+
+.game_list{
+    margin-top:60px;
+}
+
+.list h1{
+    font-size: 24px;
+}
+
